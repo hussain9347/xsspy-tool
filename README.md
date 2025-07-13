@@ -5,6 +5,11 @@
 It reduces false positives by analyzing the actual exploitability of reflected payloads—making it more intelligent and accurate than traditional scanners.
 
 ---
+<img width="1536" height="1024" alt="ChatGPT Image Jul 13, 2025, 10_28_50 PM" src="https://github.com/user-attachments/assets/19a7a66c-b06b-40e4-98bf-c59c2f2c0540" />
+
+
+https://github.com/user-attachments/assets/66d5c6ef-76f5-4cbd-ad68-e1a4da73c275
+
 
 ## 🚀 Features
 
