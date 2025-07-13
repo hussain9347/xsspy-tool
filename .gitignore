@@ -1,6 +1,9 @@
-# Ignore the private server code
-server/
-
 # Ignore Python cache files
 __pycache__/
 *.pyc
+
+# Ignore generated report files
+scan_report.txt
+
+# Ignore environment variable files (good practice)
+.env
