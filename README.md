@@ -1,67 +1,77 @@
-xsspy
-xsspy is a powerful, AI-enhanced command-line tool designed to automate the detection of Reflected Cross-Site Scripting (XSS) vulnerabilities. It leverages the analytical power of Google's Gemini AI to analyze potential reflections, providing more accurate results than traditional scanners and reducing false positives.
+# 🧠 xsspy – AI-Enhanced Reflected XSS Scanner
 
-\033[96m
- __  __ ____ ____ ____ __ __
- \ \/ /|  _ \  _ \  _ \ \ V /
-  \  / | |_) | |_) | |_) | \ /
-  /  \ |  __/|  __/|  __/  | |
- /_/\_\|_|   |_|   |_|     |_|
+**xsspy** is a powerful command-line tool designed to automate the detection of **Reflected Cross-Site Scripting (XSS)** vulnerabilities using **Google's Gemini AI**.
 
-\033[0m
-     \033[93mxsspy by hussain\033[0m
+It reduces false positives by analyzing the actual exploitability of reflected payloads—making it more intelligent and accurate than traditional scanners.
 
-Disclaimer
-This tool is intended for educational purposes and for use in authorized security testing scenarios only. The author is not responsible for any misuse or damage caused by this program. Use it ethically and responsibly.
+---
 
-Features
-🤖 AI-Powered Analysis: Uses Google's Gemini AI to intelligently determine if a reflected payload is exploitable.
+## 🚀 Features
 
-🔎 Automatic Parameter Discovery: Crawls the target URL to find potential parameters to test.
+- ✅ AI-powered analysis using Gemini  
+- ✅ Automatic parameter detection and payload injection  
+- ✅ Clean CLI interface for bug hunters and pentesters  
+- ✅ No need to set up your own API key  
+- ✅ Client-server architecture for secure backend analysis  
+- ✅ Open-source and beginner-friendly  
 
-⚡ Fast & Efficient: Includes a --first flag to stop scanning a parameter as soon as a vulnerability is confirmed.
+---
 
-📄 Clean Reporting: Provides a color-coded summary in the terminal and saves a detailed report to a file.
+## 📦 Installation
 
-✅ User-Friendly: No need for users to configure API keys.
+Clone the repository and install dependencies:
 
-Installation on Kali Linux
-xsspy is designed to be simple to set up on penetration testing distributions like Kali Linux.
+```bash
+git clone https://github.com/yourusername/xsspy.git
+cd xsspy
+pip install -r requirements.txt
 
-Open your terminal and update your package list.
+⚙️ Usage
+Basic Command
+python xsspy_client.py --url https://example.com --payloads payloads.txt
 
-sudo apt update && sudo apt upgrade -y
+Options
+Option	Description
+--url	Target URL with injectable parameters
+--payloads	Path to your custom or default payload list
+--headers	(Optional) Add custom headers if needed
 
-Ensure you have git and pip installed.
++----------------+      HTTP POST      +----------------+
+| xsspy_client.py|  -----------------> | api_server.py  |
+| (Public CLI)   |                    | (Flask Server) |
++----------------+ <-----------------  +----------------+
+        |                                |
+    Injects Payloads                Uses Gemini API
+        |                                |
+    Parses Reflections            Sends AI verdict
 
-sudo apt install git python3-pip -y
+☁️ Deployment
+Server Setup on Render
+Create requirements.txt:
+Flask
+gunicorn
+requests
 
-Clone the repository from GitHub.
+🛡️ Security
+The API key is stored securely on the server.
 
-git clone https://github.com/hussain9347/xsspy-tool.git
+Never exposed to the public or client-side.
 
-Navigate into the client tool directory.
+All traffic between client and server is encrypted.
 
-cd xsspy-tool/client_tool
+AI analysis only occurs backend-side.
 
-Install the required Python libraries.
+🧠 Powered By
+Google Gemini API
 
-sudo apt install python3-requests -y
+Python 3.x
 
-Usage
-The tool is run from the command line.
+Flask
 
-Basic Scan (scans all discovered parameters):
+Render Cloud Hosting
 
-python3 xsspy_client.py -u "http://testphp.vulnweb.com/search.php?test=query"
+📫 Contact
+GitHub: https://github.com/hussain9347
 
-Fast Scan (stops after the first finding per parameter):
+LinkedIn: https://www.linkedin.com/in/syed-kaif-hussain/
 
-python3 xsspy_client.py -u "YOUR_TARGET_URL" --first
-
-Manual Scan (specify your own parameters):
-
-python3 xsspy_client.py -u "YOUR_TARGET_URL" -p "q,query,search"
-
-How It Works
-This tool uses a client-server architecture. The xsspy_client.py tool you run connects to a centralized analysis server that securely handles the interaction with the Google Gemini API. This means users can run the scanner without needing to manage their own API keys.
