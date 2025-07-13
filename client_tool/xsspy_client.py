@@ -12,7 +12,7 @@ from datetime import datetime
 # The public URL of your API server.
 # For local testing, this is correct. For online deployment,
 # you would change this to your public server URL.
-ANALYSIS_SERVER_URL = "http://127.0.0.1:5000/analyze" 
+ANALYSIS_SERVER_URL = "https://xsspy-tool-3.onrender.com/analyze" 
 
 # --- ASCII Art Banner ---
 BANNER = r"""
