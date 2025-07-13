@@ -1,0 +1,6 @@
+# Ignore the private server code
+server/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
