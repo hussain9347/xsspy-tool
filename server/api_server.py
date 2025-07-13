@@ -10,7 +10,6 @@ app = Flask(__name__)
 
 # --- Gemini Configuration ---
 # Load your secret API key from an environment variable for security.
-# NEVER hardcode your key in the script.
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 MODEL_NAME = "gemini-1.5-flash-latest"
 GEMINI_API_URL = f'https://generativelanguage.googleapis.com/v1beta/models/{MODEL_NAME}:generateContent?key={GEMINI_API_KEY}'
@@ -19,7 +18,6 @@ def get_analysis_from_gemini(html_content, payload):
     """
     This function lives on the server and securely calls the Gemini API.
     """
-    # This check is a fallback, the main check is now at startup.
     if not GEMINI_API_KEY:
         print("ERROR: GEMINI_API_KEY environment variable not set on the server.")
         return "ERROR: Analysis server is not configured correctly."
@@ -44,7 +42,7 @@ def get_analysis_from_gemini(html_content, payload):
 
     try:
         response = requests.post(GEMINI_API_URL, headers=headers, json=data, timeout=25)
-        response.raise_for_status() # Raise an exception for bad status codes
+        response.raise_for_status()
         result = response.json()
         if 'candidates' in result and result['candidates']:
             return result['candidates'][0]['content']['parts'][0]['text'].strip()
@@ -64,29 +62,14 @@ def handle_analysis_request():
 
     html_content = request_data['html_content']
     payload = request_data['payload']
-
-    # Get the analysis from our secure function
     analysis_result = get_analysis_from_gemini(html_content, payload)
-
-    # Return the result to the user's tool
     return jsonify({'analysis': analysis_result})
 
 if __name__ == '__main__':
-    # [FIXED] Add a check right at the start to make sure the API key is set.
-    # This provides a clear error message instead of exiting silently.
-    print("[DEBUG] Script is starting...")
-    
+    # This block is for local testing. Render uses the gunicorn command instead.
     if not GEMINI_API_KEY:
         print("\n[FATAL ERROR] The GEMINI_API_KEY is not set.")
-        print("Please set the environment variable before running the server.")
-        print('Example (PowerShell): $env:GEMINI_API_KEY="Your-Key-Here"')
-        sys.exit(1) # Exit with an error code
-
-    print("[DEBUG] GEMINI_API_KEY found. Starting Flask server...")
+        print("Please set the environment variable before running the server locally.")
+        sys.exit(1)
+    
     app.run(host='0.0.0.0', port=5000)
-
-# ---
-# File: requirements.txt
-Flask
-gunicorn
-requests
